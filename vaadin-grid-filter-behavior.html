@@ -23,8 +23,12 @@
     },
 
     _filterChanged: function(e) {
-      if (this._filters.indexOf(e.target) === -1) {
+      const index = this._filters.indexOf(e.target);
+      if (index === -1) {
         this._filters.push(e.target);
+      }
+      else if (!e.target.value || e.target.value === "") {
+        this._filters.splice(index, 1);
       }
 
       e.stopPropagation();
