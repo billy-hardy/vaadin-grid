@@ -165,6 +165,13 @@
         };
       });
 
+      it('should not keep empty filters', function() {
+        const filter = grid._filters[0];
+        filter.value = '';
+        flushFilters(grid);
+        expect(grid._filters).to.not.include(filter);
+      });
+
       it('should clear cache and fetch data when filters change', function(done) {
         grid.items = ['foo', 'bar'];
         sinon.stub(grid, 'clearCache', done);
